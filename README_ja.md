@@ -12,9 +12,10 @@
 
 ## 提供する機能 (Tools)
 
-- `search_memos`: Vault内のMarkdownファイルを全文検索
+- `search_memos`: Vault内をセマンティック検索（意味ベースの検索）。キーワードが一致しなくても文脈が近いメモを見つけます。
 - `read_memo`: 指定したメモの内容を読み取り
-- `save_insight`: チャットでの議論を新しいメモとして保存 (デフォルトは `ai_dialogues` 、明示的に指定すれば `11_claude_dialogues` などモデル別のディレクトリへ保存)
+- `write_memo`: プレーンなMarkdownファイルを指定したパスに保存（ドラフトやドキュメント用）
+- `write_dialogue`: チャットでの議論を会話形式のメモとして保存（日付・プロバイダー別）
 - `list_recent_memos`: 最近更新されたメモの一覧を表示
 
 ## セットアップ手順

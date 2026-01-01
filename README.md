@@ -12,9 +12,10 @@ This tool is specifically designed for users who manage their knowledge with the
 
 ## Tools Provided
 
-- `search_memos`: Full-text search across Markdown files in your Vault.
+- `search_memos`: Semantic search across your Vault. Finds relevant notes even if keywords don't match exactly.
 - `read_memo`: Read the content of a specific note.
-- `save_insight`: Save a conversation as a new note (defaults to `ai_dialogues`, or a specific directory like `11_claude_dialogues`).
+- `write_memo`: Save a plain Markdown file to a specific path (for drafts or documents).
+- `write_dialogue`: Save a conversation as a formatted dialogue note (with date and provider).
 - `list_recent_memos`: List recently updated notes.
 
 ## Setup Instructions
