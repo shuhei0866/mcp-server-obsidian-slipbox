@@ -64,9 +64,17 @@ def search_memos(query: str, limit: int = 10) -> str:
         return f"エラー: 検索中に問題が発生しました: {str(e)}"
 
 
+def extract_links(text):
+    """Markdownから [[リンク名]] 形式の内部リンクをすべて抽出する"""
+    links = re.findall(r"\[\[(.*?)\]\]", text)
+    clean_links = [link.split("|")[0] for link in links]
+    return list(set(clean_links))
+
+
 @mcp.tool()
 def read_memo(relative_path: str) -> str:
     """指定されたパスのメモの内容を読み込みます。
+    内容に加えて、そこからリンクされている他のメモの一覧も表示されます。
 
     Args:
         relative_path: Vaultルートからの相対パス（例: '000_Slipbox/memo.md'）
@@ -81,7 +89,16 @@ def read_memo(relative_path: str) -> str:
 
     try:
         with open(file_path, "r", encoding="utf-8") as f:
-            return f.read()
+            content = f.read()
+
+        # リンク情報を抽出
+        links = extract_links(content)
+
+        # 本文の末尾に関連リンクを添えてAIに返す
+        link_str = "\n".join([f"- [[{l}]]" for l in links]) if links else "なし"
+        footer = f"\n\n---\n【関連リンク】\n{link_str}\n\n※興味深いリンクがあれば、自発的に read_memo で読みに行って構いません。"
+
+        return content + footer
     except Exception as e:
         return f"エラー: ファイルの読み込みに失敗しました: {str(e)}"
 

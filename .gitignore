@@ -8,6 +8,7 @@ __pycache__/
 
 # Vector Index (Private data)
 faiss_index/
+embeddings_cache/
 
 # Logs
 *.log
